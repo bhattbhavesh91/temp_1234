@@ -1,0 +1,7 @@
+Please process the attached PDF page by page: 
+
+1. For any sentences or paragraphs, extract the text into a multiline text file. 
+2. For any tables, convert them into JSON format suitable for improved RAG embedding representation. Note that the tables can be complex and may include hierarchical structures, so use your judgment and intelligence to create an accurate and meaningful JSON representation. 
+3. If a table spans multiple pages, ensure that all parts of the table are included in the same JSON file.
+
+Do this for Page 1
