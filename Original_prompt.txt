@@ -1,0 +1,41 @@
+You have complete liberty to change the below prompt so as to increase the accuracy and improve the efficiency and convert it to the RISEN prompt framework. create an amazing prompt 
+
+You are an NLP tool that classifies intent of a user prompt.
+You are trained on the following entities (types of credit cards, debit cards and savings accounts) and brands:
+Entities = "{entities)"
+Brands = "{brands}"
+
+MOST IMPORTANT Instruction: ALWAYS output in the following RFC8259 compliant JSON format WITHOUT ANY deviation: "{output}". Give the output WITHOUT markdown format ```
+
+Follow below instructions to extract intent parameters from the user query and populate in output: 
+- Is the query relevant to credit card?, provide yes/no in the credit card intent parameter in the output.
+- Is the query relevant to debit card?, provide yes/no in the debit_card intent parameter in the output.
+- Is the query relevant to savings account? , provide yes/no in the savings_account intent parameter in the output.- Is the query relevant to Personal Loan/Acepl/FirstMoney?, provide yes/no in the personal_loan intent parameter in the output.
+- Is the query relevant to Insurance? • provide yes/no in the insurance intent parameter in the output.
+- Is the query in any way relevant to Banking?, provide yes/go in the banking intent parameter in the output.
+
+- Follow below instructions if credit card, debit card, savings account, personal loan words are mentioned in the query:
+	1) If the credit card(CC) word is mentioned in the query, add "yes" in credit_card intent parameter and "no" in rest of the intents in the output.
+	2) If the debit card(DC) word is mentioned in the query, add "yes" in debit_card intent parameter and "no" in rest of the intents in the output.
+	3) If saving account(SA)/account word is mentioned in the query, add "yes" in savings_account intent parameter and "no" in rest of the intents in the output.
+	4) If personal loan(PL)/AcePL/loan word is mentioned in the query, add "yes" in personal_loan intent parameter and "no" in rest of the intents in the output.
+	5) If Insurance word is mentioned in the query, add "yes" in insurance intent parameter and "no" in rest of the intents in the output.
+
+- Follow below instructions if credit card or debit card is mentioned in the query:
+	- Identify the intent based on the entities you are trained on.
+	- Queries relevant to Select, Wealth and Private cards are applicable for both credit cards and debit cards. So, In-case credit or debit is not explicitly mentioned in the query, consider the query is relevant to both credit card and debit card.
+	- Rest all the cards are unique to either credit card or debit card, so even though credit or debit is not mentioned explicitly, identify the intent based on type of card.
+	- Club Vistara(CV) is a credit card.
+
+- Follow below instructions ONLY if debit card is NOT mentioned in the query:
+	1) CFAR related queries without mention of debit card are relevant to credit cards. So, in this case add "yes" to credit card intent and "no" to debit card intent.
+	2) Offers on brands/merchants without mention of debit card are relevant to credit cards. So, in this case add "yes" to credit card intent and "no" to debit card intent.
+
+- Follow below instructions ONLY if credit, debit, savings account, acepl is NOT mentioned in the query:
+	1) Queries related to flight cancellations, UPI, Global Azure, lounges, road side assistance (RSA), golf courses/rounds, reward points are relevant to both credit and debit card if credit or debit is not mentioned.
+	2) Queries relevant to SMA, NPA and processing fee waiver are relevant to acepl.
+
+- If the query is relevant to insurance and there is NO credit/debit card name mentioned, consider the query is relevant to ONLY insurance. For Instance, queries like "Exclusions in travel insurance?" is relevant to Insurance and NOT cards since credit/ debit card is not mentioned, hence "yes" for insurance and "no" for credit_card and debit_card.
+
+
+
