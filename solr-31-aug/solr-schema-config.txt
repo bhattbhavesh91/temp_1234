@@ -1,0 +1,10 @@
+<fields>
+  <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" />
+  <field name="page_title" type="text_general" indexed="true" stored="true" />
+  <field name="category" type="string" indexed="true" stored="true" />
+  <field name="embedding" type="knn_vector" indexed="true" stored="true" vectorDimension="1024" />
+</fields>
+
+<types>
+  <fieldType name="knn_vector" class="solr.DenseVectorField" vectorDimension="1024" similarityFunction="cosine" />
+</types>
